@@ -1,12 +1,12 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     cpf = models.CharField(max_length=11)
 
 class Estado(models.Model):
     estado_id = models.AutoField(primary_key=True)
-    nome_estado = models.CharField(max_length=100, unique=True)
+    nome_estado = models.CharField(max_length=100, unique=True, error_messages={'unique': 'O Estado em questão já foi registrado.'})
 
 class Unidade(models.Model):
     unidade_id = models.AutoField(primary_key=True)
