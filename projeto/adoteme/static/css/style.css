@@ -1,0 +1,38 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar {
+    border-right: 1px solid #dee2e6;
+    top: 30px;
+}
+
+.sb-full-height {
+    min-height: 100vh;
+}
+
+#sidebar.active {
+    margin-left: -265px;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.login {
+    margin-left: 85%;
+}
+
+.nav-link {
+    color: #000000;
+}
+
+.nav>a:active,
+.nav>a:hover,
+.nav>a:focus {
+    color: black;
+    background-color: #FFD050;
+}

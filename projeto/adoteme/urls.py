@@ -1,7 +1,7 @@
 from django.urls import path
-from adoteme import views
+from adoteme.views.views_homepage import index
 
 
 urlpatterns = [
-
+    path('', index, name='index')
 ]
