@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% include "messages.html" %}
+
+<div class="content-section">
+<div class="outer">
+    <div class="middle">
+    <div class="inner">
+        <br/>
+        <br/>
+
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <h1> Unidades de {{ responsavel_unidades.first_name }} {{ responsavel_unidades.last_name }}: </h1>
+            </div>
+        </div>
+    
+        <hr class="intro-divider">
+        <br/>
+        <br>
+            {% if unidades %}
+        <table class="table table-striped table-bordered" id="tabela_unidades">
+            <thead>
+                <tr>
+                    <th width="25%"> Nome da Unidade </th>
+                    <th width="25%"> Sobre a Unidade </th>
+                    <th width="25%"> Estado </th>
+                    <th width="25%"> Telefone da Unidade</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for unidade in unidades %}
+            <tr>
+                <td>
+                    <a href="{% url 'visualizar_unidade' unidade.unidade_id %}" data-tt="tooltip" title="Ver mais informações da Unidade.">
+                        {{ unidade.nome_unidade }} 
+                    </a>
+                </td>
+                <td>
+                    {{ unidade.descricao_unidade }} 
+                    </a>
+                </td>
+                <td>
+                    {{ unidade.estado.nome_estado }}
+                </td>
+                <td>
+                    {{ unidade.telefone_unidade }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            {% else %}
+        <div style="text-align: center">
+            <div style="text-align: center">
+                <h3> Você não possui nenhuma barraca cadastrada. </h3>
+            {% endif %}
+            </div>
+        </div> 
+    </div>
+    <br>
+    </div>
+</div>
+</div>
+
+
+<script>
+
+$('[data-tt="tooltip"]').tooltip();
+
+</script>
+{% endblock %}

@@ -41,7 +41,7 @@
             {% for estado in estados %}
             <tr>
                 <td>
-                    <a href="#" data-tt="tooltip" title="Ver unidades para adoção.">
+                    <a href="{% url 'lista_unidades' estado.estado_id %}" data-tt="tooltip" title="Ver unidades para adoção.">
                     {{ estado.nome_estado}}
                     </a>
                 </td>
@@ -69,6 +69,7 @@
         </div> 
       </div>
       <br>
+
       <div id="modal_deletar_estado" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

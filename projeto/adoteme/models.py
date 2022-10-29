@@ -14,7 +14,7 @@ class Unidade(models.Model):
     responsavel = models.ForeignKey('Usuario',on_delete=models.CASCADE, db_column='fk_responsavel_id', related_name='unidade_responsavel_fk')
     nome_unidade = models.CharField(max_length=200, blank=True, null=True)
     telefone_unidade = models.CharField(max_length=20, blank=True, null=True)
-    descricao_unidade = models.CharField(max_length=200, blank=True, null=True)
+    descricao_unidade = models.TextField(blank=True, null=True)
 
 class Animal(models.Model):
     animal_id = models.AutoField(primary_key=True)

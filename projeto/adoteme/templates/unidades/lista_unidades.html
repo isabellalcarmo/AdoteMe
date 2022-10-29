@@ -1,0 +1,125 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% include "messages.html" %}
+
+<div class="content-section">
+    <div class="outer">
+    <div class="middle">
+        <div class="inner">
+        <br/>
+        <br/>
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <h1> Unidades de adoção em {{ estado_atual.nome_estado }}: </h1>
+            </div>
+        </div>
+    
+        <hr class="intro-divider">
+        <br/>
+        <div class="row">
+            <div class="col-md-6">
+            {% if perms.adoteme.change_unidade %}
+                <a href="{% url 'criar_unidade' estado_id %}" class="btn btn-primary btn-lg">
+                    <i class="fa fa-plus"></i> Nova Unidade </button>
+                </a>
+            {% endif %}
+            </div>
+        </div>
+        <br>
+        {% if unidades %}
+        <table class="table table-striped table-bordered" id="tabela_unidades">
+            <thead>
+                <tr>
+                    <th width="20%"> Nome da Unidade </th>
+                    <th width="20%"> Sobre a Unidade </th>
+                    <th width="20%"> Responsável </th>
+                    <th width="20%"> Telefone da Unidade</th>
+                    {% if user.is_superuser %}
+                    <th width="20%"> Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for unidade in unidades %}
+            <tr>
+                <td>
+                    <a href="{% url 'visualizar_unidade' unidade.unidade_id %}" data-tt="tooltip" title="Ver mais informações da unidade.">
+                    {{ unidade.nome_unidade }} 
+                    </a>
+                </td>
+                <td>
+                    {{ unidade.descricao_unidade }} 
+                    </a>
+                </td>
+                <td>
+                    {% if unidade.responsavel.first_name %}
+                        {{ unidade.responsavel.first_name }} {{ unidade.responsavel.last_name }}
+                    {% else %}
+                        Não Possui
+                    {% endif %}
+                </td>
+                <td>
+                    {{ unidade.telefone_unidade }}
+                </td>
+                {% if user.is_superuser %}
+                <td>
+                <div class="row justify-content-between">
+                    <div class="col-6 text-center">
+                        <a href="" data-href="{% url 'deletar_unidade' unidade.unidade_id %}" data-toggle="modal" data-target="#modal_deletar_unidade" data-tt="tooltip" title="Realizar exclusão da Unidade de adoção.">
+                        <i class="fa fa-trash fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="col-6 text-center">
+                        <a href="" data-href="#" data-tt="tooltip" title="Realizar edição da Unidade de adoção.">
+                        <i class="fa fa-edit fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            {% else %}
+        <div style="text-align: center">
+            <div style="text-align: center">
+                <h3> Ainda não há nenhuma unidade cadastrada neste Estado. </h3>
+            {% endif %}
+            </div>
+        </div> 
+    </div>
+    <br>
+
+    <div id="modal_deletar_unidade" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Tem certeza que deseja deletar esta Unidade?</h4>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Cancelar</button>
+            <a type="button" class="btn btn-danger btn-lg btn-ok">Sim</a>
+            </div>
+        </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    </div>
+</div>
+</div>
+
+
+<script>
+
+$('[data-tt="tooltip"]').tooltip();
+
+$('#modal_deletar_unidade').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
+
+
+</script>
+{% endblock %}
