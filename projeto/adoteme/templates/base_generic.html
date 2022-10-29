@@ -68,8 +68,8 @@
             {% with request.get_full_path as path %}
                 <a class="nav-link {% if path == '/adoteme/'%}active{% endif %}" href="{% url 'home' %}">Home</a>
             {% endwith %}
-            {% with request.get_full_path|slice:":14" as path %}
-                <a class="nav-link {% if path == '/adoteme/estados'%}active{% endif %}" href="#">Estados para adoção</a>
+            {% with request.get_full_path as path %}
+                <a class="nav-link {% if path == '/adoteme/estados/lista'%}active{% endif %}" href="{% url 'lista_estados' %}">Estados para adoção</a>
             {% endwith %}
             <hr />
             </nav>
