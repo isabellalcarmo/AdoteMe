@@ -1,0 +1,131 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+{% include "messages.html" %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    Houve um erro ao criar seu usuário. Por favor, veja as mensagens abaixo.
+</div>
+{% endif %}
+
+<div class="row justify-content-center">
+    <div class="form-group col-md-12">
+        <div class="jumbotron">
+            <legend class="text-center">
+                <h3 class="display-4">Criação de Usuário</h3>
+            </legend>
+
+            <p class="lead text-center">
+                Bem-vindo(a) ao AdoteMe!<br>
+            </p>
+            <script type="text/javascript" src="{% static 'js/validacao.js' %}"></script>
+
+            <hr class="my-4">
+            <form method="post" action="{% url 'register_user' %}">
+                {% csrf_token %}
+
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-8">
+                        <h3 class="sub"> Dados Pessoais </h3>
+                        {{ form.nome.label_tag }}
+                        {{ form.nome }}
+                        {% if form.nome.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.nome.errors }}
+                        </div>
+                        {% endif %}
+
+                        {{ form.sobrenome.label_tag }}
+                        {{ form.sobrenome }}
+                        {% if form.sobrenome.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.sobrenome.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-8">
+                        
+                        {{ form.cpf.label_tag }} <span id='idMensagemCPF' class='texto-validacao'></span>
+                        {{ form.cpf }}
+                        {% if form.cpf.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.cpf.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-8">
+                        {{ form.tipo_usuario.label_tag }}
+                        {{ form.tipo_usuario }}
+                        {% if form.tipo_usuario.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.tipo_usuario.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-8">
+                        <h3 class="sub"> Dados da Conta </h3>
+                        {{ form.usuario.label_tag }} <span id='idMensagemUsuario' class='texto-validacao'></span>
+                        {{ form.usuario }}
+                        {% if form.usuario.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.usuario.errors }}
+                        </div>
+                        {% endif %}
+                        <br>
+
+                        {{ form.email.label_tag }} <span id='idMensagemEmail' class='texto-validacao'></span>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.email.errors }}
+                        </div>
+                        {% endif %}
+                        <br>
+                    
+                        {{ form.senha.label_tag }}
+                        {{ form.senha }}
+                        {% if form.senha.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.senha.errors }}
+                        </div>
+                        {% endif %}
+                        <br>
+
+                        {{ form.confirmar_senha.label_tag }}
+                        {{ form.confirmar_senha }}
+                        {% if form.confirmar_senha.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.confirmar_senha.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <br>
+                <div class="text-center">
+                    <div class="form-group">
+                        <div class="row justify-content-lg-center">
+                            <div class="container-login100-form-btn">
+                                <input type="submit" name="submit" value="Cadastrar" style="font-size:20px;"
+                                    class="btn btn-primary col-xs-8 .col-md-8" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

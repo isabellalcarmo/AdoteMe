@@ -24,9 +24,9 @@
 
 <body>
     <div class="wrapper">
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light" style="border-bottom: 1px solid #dee2e6">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light" style="border-bottom: 1px solid #c5841d">
         <div class="col-lg-4">  
-            <a href="{% url 'index' %}"><img src="{% static 'img/adoteme.png' %}" height="40"/>
+            <a href="{% url 'home' %}"><img src="{% static 'img/adoteme.png' %}" height="30"/>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -44,8 +44,8 @@
                         Olá, <strong>{% if user.first_name == '' %}{{ user.username }}{% else %}{{ user.first_name }}{% endif %}</strong>!
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item"><i class="fas fa-key"></i> Mudar Senha</a>
-                        <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="{% url 'change_password' %}" class="dropdown-item"><i class="fas fa-key"></i> Mudar Senha</a>
+                        <a href="{% url 'logout' %}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         {% if user.is_staff %}
                         <div class="dropdown-divider"></div>
                         <a href="{% url 'admin:index' %}" class="dropdown-item"><i class="fas fa-user-cog"></i> Admin</a>
@@ -54,8 +54,8 @@
                 </li>
             </ul>
             {% else %}
-                <a href="#" class="btn btn-outline-primary tc-btn-hover" style="margin-left:auto;">Cadastro</a>&nbsp;
-                <a href="#" class="btn btn-outline-primary tc-btn-hover">Login</a>
+                <a href="{% url 'register_user' %}" class="btn btn-outline-primary tc-btn-hover" style="margin-left:auto;">Cadastro</a>&nbsp;
+                <a href="{% url 'login' %}" class="btn btn-outline-primary tc-btn-hover">Login</a>
             {% endif %}
         </div>
     </div>
@@ -64,8 +64,9 @@
         <div class="row">
         <div class="col-lg-2 flex-shrink-0 p-5 sidebar bg-light sb-full-height">
             <nav class="nav flex-column nav-pills nav-fill">
+                <br>
             {% with request.get_full_path as path %}
-                <a class="nav-link {% if path == '/adoteme/'%}active{% endif %}" href="{% url 'index' %}">Home</a>
+                <a class="nav-link {% if path == '/adoteme/'%}active{% endif %}" href="{% url 'home' %}">Home</a>
             {% endwith %}
             {% with request.get_full_path|slice:":14" as path %}
                 <a class="nav-link {% if path == '/adoteme/estados'%}active{% endif %}" href="#">Estados para adoção</a>

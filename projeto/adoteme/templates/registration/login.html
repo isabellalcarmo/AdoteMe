@@ -1,0 +1,59 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    Falha ao fazer login. Seu usuário ou senha podem estar incorretos, ou sua conta pode estar inativa. Se você acha que isso é um erro, por favor entre em contato.
+</div>
+{% endif %}
+
+<div class="row justify-content-center">
+	<div class="form-group col-md-6">
+		<div class="jumbotron">
+			<legend class="text-center">
+				<h3 class="display-4">Login</h3>
+			</legend>
+
+			<p class="lead text-center">
+				{% if next %}
+				Por favor, faça seu login para acessar essa página.
+				{% else %}
+				Por favor, faça seu login para continuar.
+				{% endif %}
+			</p>
+
+			<hr class="my-4">
+
+			<form method="post" action="{% url 'login' %}">
+				{% csrf_token %}
+
+				{% for field in form %}
+				<div class="row justify-content-center text-center">
+					<div class="form-group col-md-8">
+						{{ field.label_tag }}
+						<br>
+						{{ field }}
+						{{ field.errors }}
+					</div>
+				</div>
+				{% endfor %}
+
+				<div class="text-center">
+					<div class="form-group">
+						<div class="row justify-content-lg-center">
+							<div class="col-lg-7 col-lg-offset-3 .col-md-4">
+								<input type="submit" name="submit" value="Entrar" style="font-size:20px;"
+									class="btn btn-primary col-xs-8 .col-md-8" />
+								</p>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" name="next" value="{{ next }}" />
+					<p><a href="#">Esqueceu sua senha?</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

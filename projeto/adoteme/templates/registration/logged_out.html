@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+	<div class="form-group col-md-6">
+		<div class="jumbotron">
+			<legend class="text-center">
+				<h3 class="display-4">Logout</h3>
+			</legend>
+
+			<p class="lead text-center">
+				Você efetuou logout. Volte sempre!
+			</p>
+
+			<div class="text-center">
+				<a href="{% url 'home' %}">Voltar à página inicial</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

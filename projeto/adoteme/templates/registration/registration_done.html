@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+	<div class="form-group col-md-12">
+		<div class="jumbotron">
+			<legend class="text-center">
+				<h3 class="display-4">Criação de Usuário</h3>
+			</legend>
+
+			<p class="lead text-center">
+                Sua conta foi criada com sucesso!
+            </p>
+
+			<hr class="my-4">
+
+			<div class="text-center">
+				<a href="{% url 'home' %}">Voltar à página inicial</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
