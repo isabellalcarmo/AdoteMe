@@ -21,7 +21,7 @@ class Animal(models.Model):
     unidade = models.ForeignKey('Unidade',on_delete=models.CASCADE, db_column='fk_unidade_id', related_name='animal_unidade_fk')
     nome_animal = models.CharField(max_length=100, blank=True, null=True)
     tipo_animal = models.CharField(max_length=100, blank=True, null=True)
-    descricao_animal = models.CharField(max_length=200, blank=True, null=True)
+    descricao_animal = models.TextField(blank=True, null=True)
 
 class ListaAdocao(models.Model):
     lista_id = models.AutoField(primary_key=True)

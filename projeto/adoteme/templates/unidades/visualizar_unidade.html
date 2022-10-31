@@ -44,7 +44,7 @@
     {% if request.user == unidade.responsavel %}
     <div class="row">
         <div class="col-md-6">
-            <a href="#" class="btn btn-primary btn-lg">
+            <a href="{% url 'criar_animal' unidade.unidade_id %}" class="btn btn-primary btn-lg">
                 <i class="fa fa-plus"></i> Adicionar Animal </button>
             </a>
         </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-6 text-center">
                         {% if request.user == barraca.responsavel %}
-                        <a href="#" data-tt="tooltip" title="Editar propriedades do animal">
+                        <a href="{% url 'editar_animal' animal.animal_id %}" data-tt="tooltip" title="Editar propriedades do animal">
                         <i class="far fa-edit fa-2x"></i>
                         </a>
                         {% endif %}

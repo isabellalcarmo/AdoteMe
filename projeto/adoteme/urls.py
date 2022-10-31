@@ -3,6 +3,7 @@ from adoteme.views.views_homepage import index
 from adoteme.views.views_auth import register_user, user_registration_done
 from adoteme.views.views_estados import lista_estados, criar_estado, deletar_estado
 from adoteme.views.views_unidades import lista_unidades, criar_unidade, deletar_unidade, editar_unidade, visualizar_unidade, minhas_unidades
+from adoteme.views.views_animal import lista_animais, criar_animal, deletar_animal, editar_animal
 
 
 urlpatterns = [
@@ -24,4 +25,9 @@ urlpatterns = [
     path('unidades/editar_unidade/<int:unidade_id>', editar_unidade, name='editar_unidade'),
     path('unidades/visualizar_unidade/<int:unidade_id>', visualizar_unidade, name='visualizar_unidade'),
     path('minhas_unidades/<int:responsavel_id>', minhas_unidades, name='minhas_unidades'),
+
+    # URLs dos Animais
+    path('unidades/animais/criar_animais/<int:unidade_id>', criar_animal, name='criar_animal'),
+    path('unidades/animais/deletar_animal/<int:animal_id>', deletar_animal, name='deletar_animal'),
+    path('unidades/animais/editar_animal/<int:animal_id>', editar_animal, name='editar_animal'),
 ]
