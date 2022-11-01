@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+{% block title %}Animal{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="content-section">
+    <div class="center text-center">
+    <h1>Editar animal:</h1>
+    </div>
+    <br>
+    <div class="container">
+    <form id='form-editar_animal' class="form form-horizontal" method="post" role="form" enctype="multipart/form-data" action=" {% url 'aditar_animal' animal_id %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="margin-bottom: .5rem">Nome do Animal<span style="color:red">* </span></p>
+                        {{ form.nome_animal }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="margin-bottom: .5rem">Tipo do animal<span style="color:red">* </span></p>
+                    {{ form.tipo_animal }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-20">
+                    <p style="margin-bottom: .5rem">Sobre o animal</p>
+                    {{ form.descricao_animal }}
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="row" style="max-width: 135px; margin-bottom: 3%;">
+                <div class="col-md-2">
+                    <input type="submit" value="Confirmar" class="btn btn-primary btn-lg">
+                </div>
+            </div>
+        </form>
+        <div class="row justify-content-end">
+            <div class="form-group col-md-2">
+                <a href="{%url 'visualizar_unidade' unidade_id %}"><button class="btn btn-secondary btn-block btn-lg"><i class="fa fa-undo-alt"> </i> Voltar</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
