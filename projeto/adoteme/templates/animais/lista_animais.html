@@ -20,6 +20,11 @@
             {{ animal.tipo_animal }}
         </td>
         <td>
+            {% if animal.raca == '' %} Indefinido
+            {% else %} {{ animal.raca }}
+            {% endif %}
+        </td>
+        <td>
             {{ animal.descricao_animal }}
         </td>
         <td>

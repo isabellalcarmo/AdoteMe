@@ -23,7 +23,7 @@ def lista_animais(request, unidade_id):
 @login_required
 @permission_required('adoteme.add_animal')
 def criar_animal(request, unidade_id):
-    # unidade_atual = Unidade.objects.filter(unidade_id=unidade_id).values('estado')
+    unidade_atual = Unidade.objects.filter(unidade_id=unidade_id).values('estado')
     # estado_id = unidade_atual[0]['estado']
 
     if request.method == 'POST':
@@ -33,6 +33,7 @@ def criar_animal(request, unidade_id):
                 nome_animal = form.cleaned_data['nome_animal'],
                 descricao_animal = form.cleaned_data['descricao_animal'],
                 tipo_animal = form.cleaned_data['tipo_animal'],
+                # raca = form.cleaned_data['raca'],
                 unidade = unidade_id,
             )
         try:
