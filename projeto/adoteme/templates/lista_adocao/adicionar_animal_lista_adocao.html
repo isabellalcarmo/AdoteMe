@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+{% block title %}Animal{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="content-section">
+    <div class="center text-center">
+    <h1>Adicionar animal à sua lista de adoção:</h1>
+    </div>
+    <br>
+    <div class="container">
+    <form id='form-adicionar_animal_lista' class="form form-horizontal" method="post" role="form" enctype="multipart/form-data" action=" {% url 'adicionar_animal_lista' animal_id %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="margin-bottom: .5rem">Por quê você deseja adotar um animal?<span style="color:red">* </span></p>
+                        {{ form.motivo_adocao }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="margin-bottom: .5rem">Em caso de viagem, aonde você deixará o animal adotado?<span style="color:red">* </span></p>
+                    {{ form.justificativa_viagem }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="margin-bottom: .5rem">Tem algum animal em sua residência? Se sim, qual(is)?<span style="color:red">* </span></p>
+                    {{ form.posse_animal }}
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="row" style="max-width: 135px; margin-bottom: 3%;">
+                <div class="col-md-2">
+                    <input type="submit" value="Confirmar" class="btn btn-primary btn-lg">
+                </div>
+            </div>
+        </form>
+        <div class="row justify-content-end">
+            <div class="form-group col-md-2">
+                <a href="{%url 'lista_adocao' %}"><button class="btn btn-secondary btn-block btn-lg"><i class="fa fa-undo-alt"> </i> Voltar</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

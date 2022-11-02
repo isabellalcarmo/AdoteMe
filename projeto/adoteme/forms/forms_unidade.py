@@ -7,10 +7,9 @@ from ..models import Unidade
 
 
 class UnidadeForm(forms.ModelForm):
-    nome_unidade = forms.CharField(label='Nome da Unidade', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    descricao = forms.CharField(label='Sobre a Unidade', required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 15}))
-    numero_barraca = forms.CharField(label='Número da Barraca', required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    telefone_unidade = forms.CharField(label='Telefone da Unidade', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nome_unidade = forms.CharField(label='Nome da Unidade', required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    descricao_unidade = forms.CharField(label='Sobre a Unidade', required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 15}))
+    telefone_unidade = forms.CharField(label='Telefone da Unidade', required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def clean_telefone_unidade(self):
         tel = self.cleaned_data['telefone_unidade']

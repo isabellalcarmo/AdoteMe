@@ -7,7 +7,7 @@ class AnimalForm(forms.ModelForm):
     nome_animal = forms.CharField(label='Nome do Animal', required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     tipo_animal = forms.CharField(label='Tipo do Animal', required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     raca_animal = forms.CharField(label='Raça do Animal', required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    descrição_animal = forms.CharField(label='Sobre o Animal', required=False,  widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 15}))
+    descricao_animal = forms.CharField(label='Sobre o Animal', required=False,  widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 15}))
 
     class Meta:
         model = Animal

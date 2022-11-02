@@ -30,6 +30,9 @@ class ListaAdocao(models.Model):
     animal = models.ForeignKey('Animal', on_delete=models.CASCADE, db_column='fk_animal_id', related_name='lista_animal_fk')
     adotante = models.ForeignKey('Usuario',on_delete=models.CASCADE, db_column='fk_adotante_id', related_name='lista_adotante_fk')
     adotante_adotou = models.BooleanField(default=False)
+    motivo_adocao = models.TextField(blank=True, null=True)
+    justificativa_viagem = models.TextField(blank=True, null=True)
+    posse_animal = models.TextField(blank=True, null=True)
     class Meta:
         unique_together = ('animal', 'adotante')
 

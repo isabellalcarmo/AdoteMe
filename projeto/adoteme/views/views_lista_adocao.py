@@ -7,23 +7,45 @@ from django.contrib import messages
 
 from ..models import ListaAdocao, Animal
 
+from adoteme.forms.forms_lista_adocao import ListaAdocaoForm
+
 
 @login_required
 def adicionar_animal_lista(request, animal_id):
     animal = get_object_or_404(Animal, animal_id=animal_id)
+    usuario_atual = request.user
 
     if ListaAdocao.objects.filter(adotante=request.user, animal=animal).exists():
         messages.add_message(request, messages.INFO, _('Animal já está na sua lista de adoção!\n'))
         return redirect(reverse('lista_adocao'))
+    else:
+        if request.method == 'POST':
+            form = ListaAdocaoForm(request.POST, auto_id=True)
+            if form.is_valid():
+                lista_adocao = ListaAdocao(
+                    animal = animal,
+                    adotante = usuario_atual,
+                    adotante_adotou = False,
+                    motivo_adocao = form.cleaned_data['motivo_adocao'],
+                    justificativa_viagem = form.cleaned_data['justificativa_viagem'],
+                    posse_animal = form.cleaned_data['posse_animal']
+            )
+            try:
+                lista_adocao.save()
+                messages.add_message(request, messages.INFO, _('Animal adicionado à sua lista de adoção!\n'))
+                return redirect(reverse('lista_adocao'))
+            except Exception as e:
+                print(e)
+                messages.add_message(request, messages.ERROR, _("Não foi possível adicionar o animal à sua lista de adoção.\n"))
+        else:
+            form = ListaAdocaoForm()
 
-    animal_lista = ListaAdocao(
-        adotante = request.user,
-        animal = animal,
-    )
-    animal_lista.save()
+    context = {
+        'form': form,
+        'animal_id': animal_id
+    }
 
-    messages.add_message(request, messages.INFO, _('Animal adicionado à sua lista de adoção!\n'))
-    return redirect(reverse('lista_adocao'))
+    return render(request, 'lista_adocao/adicionar_animal_lista_adocao.html', context=context)
 
 
 @login_required
