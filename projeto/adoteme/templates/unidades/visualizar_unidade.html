@@ -65,53 +65,53 @@
             </tr>
         </thead>
         <tbody>
-        {% for animal in animais %}
-        <tr>
-            <td>
-                {{ animal.nome_animal }}
-            </td>
-            <td>
-                {{ animal.tipo_animal }}
-            </td>
-            <td>
-                {% if animal.raca_animal %}
-                    {{ animal.raca_animal }}
-                {% else %}
-                    Indefinido
-                {% endif %}
-            </td>
-            <td>
-                {% if animal.raca_animal %}
-                    {{ animal.descricao_animal }}
-                {% else %}
-                    Sem informações
-                {% endif %}
-            </td>
-            <td>
-                <div class="row justify-content-between">
-                    <div class="col-6 text-center">
-                        {% if request.user.is_authenticated %}
-                            <a href="#" data-tt="tooltip" title="Adotar animal">
-                                <i class="fa fa-plus fa-2x"></i></button>
-                            </a>
-                        {% endif %}
+            {% for animal in animais %}
+            <tr>
+                <td>
+                    {{ animal.nome_animal }}
+                </td>
+                <td>
+                    {{ animal.tipo_animal }}
+                </td>
+                <td>
+                    {% if animal.raca_animal %}
+                        {{ animal.raca_animal }}
+                    {% else %}
+                        Indefinido
+                    {% endif %}
+                </td>
+                <td>
+                    {% if animal.raca_animal %}
+                        {{ animal.descricao_animal }}
+                    {% else %}
+                        Sem informações
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="row justify-content-between">
+                        <div class="col-6 text-center">
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'adicionar_animal_lista' animal.animal_id %}" data-tt="tooltip" title="Adotar animal">
+                                    <i class="fa fa-plus fa-2x"></i></button>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-6 text-center">
+                            {% if request.user == unidade.responsavel %}
+                                <a href="{% url 'editar_animal' animal.animal_id %}" data-tt="tooltip" title="Editar propriedades do animal">
+                                    <i class="fa fa-edit fa-2x"></i></button>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-6 text-center">
+                            {% if request.user == unidade.responsavel %}
+                                <a href="" data-href="{% url 'deletar_animal' animal.animal_id %}" data-toggle="modal" data-target="#modal_deletar_animal" data-tt="tooltip" title="Realizar exclusão do Animal para adoção.">
+                                    <i class="fa fa-trash fa-2x"></i>
+                                </a>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="col-6 text-center">
-                        {% if request.user == unidade.responsavel %}
-                            <a href="{% url 'editar_animal' animal.animal_id %}" data-tt="tooltip" title="Editar propriedades do animal">
-                                <i class="fa fa-edit fa-2x"></i></button>
-                            </a>
-                        {% endif %}
-                    </div>
-                    <div class="col-6 text-center">
-                        {% if request.user == unidade.responsavel %}
-                            <a href="" data-href="{% url 'deletar_animal' animal.animal_id %}" data-toggle="modal" data-target="#modal_deletar_animal" data-tt="tooltip" title="Realizar exclusão do Animal para adoção.">
-                                <i class="fa fa-trash fa-2x"></i>
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </td>
+                </td>
         </tr>
         {% endfor %}
         </tbody>

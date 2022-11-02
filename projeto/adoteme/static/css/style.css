@@ -25,14 +25,3 @@
 .login {
     margin-left: 85%;
 }
-
-.nav-link {
-    color: #000000;
-}
-
-.nav>a:active,
-.nav>a:hover,
-.nav>a:focus {
-    color: black;
-    background-color: #FFD050;
-}

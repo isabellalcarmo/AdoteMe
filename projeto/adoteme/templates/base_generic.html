@@ -69,16 +69,16 @@
                 <a class="nav-link {% if path == '/adoteme/'%}active{% endif %}" href="{% url 'home' %}">Home</a>
             {% endwith %}
             {% with request.get_full_path as path %}
-                <a class="nav-link {% if path == '/adoteme/estados/lista'%}active{% endif %}" href="{% url 'lista_estados' %}">Estados para adoção</a>
+                <a class="nav-link {% if path == '/adoteme/estados/lista_estados'%}active{% endif %}" href="{% url 'lista_estados' %}">Estados para adoção</a>
             {% endwith %}
             {% if user.is_authenticated %}
                 {% with request.get_full_path as path %}
-                <a class="nav-link {% if path == '/adoteme/lista_animais'%}active{% endif %}" 
-                href="#">Minha lista de animais</a>
+                <a class="nav-link {% if path == '/adoteme/lista_adocao/'%}active{% endif %}" 
+                href="{% url 'lista_adocao' %}">Meus animais</a>
                 {% endwith %}
                 {% if perms.adoteme.change_unidade %}
-                    {% with request.get_full_path as path %}
-                        <a class="nav-link {% if path == '/adoteme/minhas_unidades'%}active{% endif %}" href="{% url 'minhas_unidades' user.id %}">Minhas Unidades</a>
+                    {% with request.get_full_path|slice:":25" as path %}
+                        <a class="nav-link {% if path == '/adoteme/minhas_unidades/'%}active{% endif %}" href="{% url 'minhas_unidades' user.id %}">Minhas Unidades</a>
                     {% endwith %}
                 {% endif %}
             {% endif %}
