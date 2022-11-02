@@ -25,7 +25,7 @@
             <p> <b>Estado de Localização da Unidade: </b> {% if unidade.estado %} {{ unidade.estado.nome_estado }} {% else %} Sem informações {% endif %}</p>
         </div>
     </div>
-    {% if request.user == unidade.responsavel %}
+    {% if request.user == unidade.responsavel or user.is_superuser %}
         <div class="row">
             <div class="col-md-6">
                 <a href="{% url 'editar_unidade' unidade.unidade_id %}" class="btn btn-primary btn-lg">
@@ -41,7 +41,7 @@
         </div>
     </div>
     <br/>
-    {% if request.user == unidade.responsavel %}
+    {% if request.user == unidade.responsavel or user.is_superuser %}
     <div class="row">
         <div class="col-md-6">
             <a href="{% url 'criar_animal' unidade.unidade_id %}" class="btn btn-primary btn-lg">
@@ -68,7 +68,12 @@
             {% for animal in animais %}
             <tr>
                 <td>
-                    {{ animal.nome_animal }}
+                    {% if request.user == unidade.responsavel or user.is_superuser %}
+                        <a href="{% url 'lista_adocao_animal' animal.animal_id %}" data-tt="tooltip" title="Ver usuários que querem adotar o animal.">
+                        {{ animal.nome_animal }}
+                    {% else %}
+                        {{ animal.nome_animal }}
+                    {% endif %}
                 </td>
                 <td>
                     {{ animal.tipo_animal }}
@@ -97,14 +102,14 @@
                             {% endif %}
                         </div>
                         <div class="col-6 text-center">
-                            {% if request.user == unidade.responsavel %}
+                            {% if request.user == unidade.responsavel or user.is_superuser %}
                                 <a href="{% url 'editar_animal' animal.animal_id %}" data-tt="tooltip" title="Editar propriedades do animal">
                                     <i class="fa fa-edit fa-2x"></i></button>
                                 </a>
                             {% endif %}
                         </div>
                         <div class="col-6 text-center">
-                            {% if request.user == unidade.responsavel %}
+                            {% if request.user == unidade.responsavel or user.is_superuser %}
                                 <a href="" data-href="{% url 'deletar_animal' animal.animal_id %}" data-toggle="modal" data-target="#modal_deletar_animal" data-tt="tooltip" title="Realizar exclusão do Animal para adoção.">
                                     <i class="fa fa-trash fa-2x"></i>
                                 </a>

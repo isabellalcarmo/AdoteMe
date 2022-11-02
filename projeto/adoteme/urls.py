@@ -4,7 +4,7 @@ from adoteme.views.views_auth import register_user, user_registration_done
 from adoteme.views.views_estados import lista_estados, criar_estado, deletar_estado
 from adoteme.views.views_unidades import lista_unidades, criar_unidade, deletar_unidade, editar_unidade, visualizar_unidade, minhas_unidades
 from adoteme.views.views_animal import criar_animal, deletar_animal, editar_animal
-from adoteme.views.views_lista_adocao import visualizar_lista_adocao, adicionar_animal_lista, deletar_animal_lista
+from adoteme.views.views_lista_adocao import visualizar_lista_adocao, adicionar_animal_lista, deletar_animal_lista, lista_adocao_animal
 
 
 urlpatterns = [
@@ -31,6 +31,7 @@ urlpatterns = [
     path('unidades/animais/criar_animais/<int:unidade_id>', criar_animal, name='criar_animal'),
     path('unidades/animais/deletar_animal/<int:animal_id>', deletar_animal, name='deletar_animal'),
     path('unidades/animais/editar_animal/<int:animal_id>', editar_animal, name='editar_animal'),
+    path('unidades/animais/lista_adocao_animal/<int:animal_id>', lista_adocao_animal, name='lista_adocao_animal'),
 
     # URLs da Lista de Adoção
     path('lista_adocao/', visualizar_lista_adocao, name='lista_adocao'),

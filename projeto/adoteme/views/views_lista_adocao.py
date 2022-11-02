@@ -46,3 +46,18 @@ def visualizar_lista_adocao(request):
         'animais_lista': animais_lista
     }
     return render(request, 'lista_adocao/visualizar_lista_adocao.html', context=context)
+
+
+@login_required
+def lista_adocao_animal(request, animal_id):
+    animal = get_object_or_404(Animal, animal_id=animal_id)
+    unidade_id = animal.unidade.unidade_id
+
+    animal_lista = ListaAdocao.objects.filter(animal=animal).all()
+
+    context = {
+        'animal': animal,
+        'animal_lista': animal_lista
+    }
+
+    return render(request, 'animais/lista_adocao_animal.html', context=context)

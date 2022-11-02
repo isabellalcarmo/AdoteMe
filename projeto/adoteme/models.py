@@ -27,7 +27,8 @@ class Animal(models.Model):
 class ListaAdocao(models.Model):
     lista_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey('Animal', on_delete=models.CASCADE, db_column='fk_animal_id', related_name='lista_animal_fk')
-    adotante = models.ForeignKey('Usuario',on_delete=models.CASCADE, db_column='fk_responsavel_id', related_name='lista_responsavel_fk')
+    adotante = models.ForeignKey('Usuario',on_delete=models.CASCADE, db_column='fk_adotante_id', related_name='lista_adotante_fk')
+    adotado = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('animal', 'adotante')
