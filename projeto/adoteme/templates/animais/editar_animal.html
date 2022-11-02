@@ -9,7 +9,7 @@
     </div>
     <br>
     <div class="container">
-    <form id='form-editar_animal' class="form form-horizontal" method="post" role="form" enctype="multipart/form-data" action=" {% url 'aditar_animal' animal_id %}">
+    <form id='form-editar_animal' class="form form-horizontal" method="post" role="form" enctype="multipart/form-data" action=" {% url 'editar_animal' animal_id %}">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-6">
@@ -22,6 +22,13 @@
                 <div class="col-md-6">
                     <p style="margin-bottom: .5rem">Tipo do animal<span style="color:red">* </span></p>
                     {{ form.tipo_animal }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-20">
+                    <p style="margin-bottom: .5rem">Raça do animal</p>
+                    {{ form.raca_animal }}
                 </div>
             </div>
             <br>
