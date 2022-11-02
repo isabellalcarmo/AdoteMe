@@ -23,13 +23,13 @@ class Animal(models.Model):
     tipo_animal = models.CharField(max_length=100, blank=True, null=True)
     raca_animal = models.CharField(max_length=100, blank=True, null=True)
     descricao_animal = models.TextField(blank=True, null=True)
+    adotado = models.BooleanField(default=False)
 
 class ListaAdocao(models.Model):
     lista_id = models.AutoField(primary_key=True)
     animal = models.ForeignKey('Animal', on_delete=models.CASCADE, db_column='fk_animal_id', related_name='lista_animal_fk')
     adotante = models.ForeignKey('Usuario',on_delete=models.CASCADE, db_column='fk_adotante_id', related_name='lista_adotante_fk')
-    adotado = models.BooleanField(default=False)
-
+    adotante_adotou = models.BooleanField(default=False)
     class Meta:
         unique_together = ('animal', 'adotante')
 

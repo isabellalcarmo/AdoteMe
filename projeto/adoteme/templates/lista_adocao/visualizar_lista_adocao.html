@@ -10,11 +10,11 @@
                 <br/>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3> Sua Lista de Adoções </h3>
+                        <h3> Sua lista de adoções </h3>
                     </div>
                 </div>
 
-                {% if animais_lista %}
+                {% if animais_lista_nao_adotados %}
                 <table class="table table-striped table-bordered" id="tabela_feiras">
                     <thead>
                         <tr>
@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                 <tbody>
-                    {% for animal in animais_lista %}
+                    {% for animal in animais_lista_nao_adotados %}
                     <tr>
                         <td>
                             {{ animal.animal.nome_animal }}
@@ -43,7 +43,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if animal.animal.raca_animal %}
+                            {% if animal.animal.descricao_animal %}
                                 {{ animal.animal.descricao_animal }}
                             {% else %}
                                 Sem informações
@@ -58,7 +58,7 @@
                         <div class="row justify-content-between">
                             <div class="col-6 text-center">
                             <a href="#" data-href="{% url 'deletar_animal_lista' animal.animal_id %}" data-toggle="modal" data-target="#modal_deletar_animal" data-tt="tooltip" title="Remover animal da lista de adoção.">
-                                <i class="fa fa-trash fa-2x"></i>
+                                <i class="fa fa-trash fa-2x" style="color:red;"></i>
                             </a>
                             </div>
                         </div>
@@ -73,6 +73,68 @@
                         <br>
                         <br>
                         <h5> Você ainda não adicionou nenhum animal à sua lista de adoção. Explore as unidades de adoção do seu Estado de preferência para encontrar seus novo amigo! </h5>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="inner">
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3> Sua lista de animais adotados </h3>
+                    </div>
+                </div>
+                {% if animais_lista_adotados %}
+                <table class="table table-striped table-bordered" id="tabela_feiras">
+                    <thead>
+                        <tr>
+                            <th width="10%"> Nome </th>
+                            <th width="10%"> Tipo do Animal </th>
+                            <th width="20%"> Raça </th>
+                            <th width="20%"> Sobre o Animal </th>
+                            <th width="40%"> Unidade </th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    {% for animal in animais_lista_adotados %}
+                    <tr>
+                        <td>
+                            {{ animal.animal.nome_animal }}
+                        </td>
+                        <td>
+                            {{ animal.animal.tipo_animal }}
+                        </td>
+                        <td>
+                            {% if animal.animal.raca_animal %}
+                                {{ animal.animal.raca_animal }}
+                            {% else %}
+                                Indefinido
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if animal.animal.descricao_animal %}
+                                {{ animal.animal.descricao_animal }}
+                            {% else %}
+                                Sem informações
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'visualizar_unidade' animal.animal.unidade.unidade_id %}" >
+                                {{ animal.animal.unidade.nome_unidade }} 
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div style="text-align: center">
+                    <div style="text-align: center">
+                        <br>
+                        <br>
+                        <h5> Você ainda não adotou nenhum animal. Explore as unidades de adoção do seu Estado de preferência para encontrar seus novo amigo! </h5>
                     </div>
                 </div>
                 {% endif %}

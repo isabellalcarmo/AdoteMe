@@ -92,7 +92,7 @@ def editar_unidade(request, unidade_id):
 
 def visualizar_unidade(request, unidade_id):
     unidade = get_object_or_404(Unidade, unidade_id=unidade_id)
-    animais = Animal.objects.filter(unidade=unidade_id).all()
+    animais = Animal.objects.filter(unidade=unidade_id, adotado=False).all()
 
     context = {
         'unidade': unidade,

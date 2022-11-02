@@ -40,10 +40,12 @@ def deletar_animal_lista(request, animal_id):
 
 @login_required
 def visualizar_lista_adocao(request):
-    animais_lista = ListaAdocao.objects.filter(adotante=request.user)
+    animais_lista_nao_adotados = ListaAdocao.objects.filter(adotante=request.user, adotante_adotou=False)
+    animais_lista_adotados = ListaAdocao.objects.filter(adotante=request.user, adotante_adotou=True)
 
     context = {
-        'animais_lista': animais_lista
+        'animais_lista_nao_adotados': animais_lista_nao_adotados,
+        'animais_lista_adotados': animais_lista_adotados
     }
     return render(request, 'lista_adocao/visualizar_lista_adocao.html', context=context)
 
@@ -51,7 +53,6 @@ def visualizar_lista_adocao(request):
 @login_required
 def lista_adocao_animal(request, animal_id):
     animal = get_object_or_404(Animal, animal_id=animal_id)
-    unidade_id = animal.unidade.unidade_id
 
     animal_lista = ListaAdocao.objects.filter(animal=animal).all()
 
@@ -61,3 +62,20 @@ def lista_adocao_animal(request, animal_id):
     }
 
     return render(request, 'animais/lista_adocao_animal.html', context=context)
+
+
+@login_required
+def aprovar_adocao_animal(request, animal_id, usuario_id):
+    animal = get_object_or_404(Animal, animal_id=animal_id)
+
+    animal_lista = ListaAdocao.objects.filter(animal=animal, adotante__id=usuario_id).first()
+
+    animal_lista.adotante_adotou = True
+    animal.adotado = True
+
+    animal.save()
+    animal_lista.save()
+
+    messages.add_message(request, messages.INFO, _('O animal foi adotado com sucesso!\n'))
+
+    return redirect(reverse('visualizar_unidade',args=[animal.unidade.unidade_id]))

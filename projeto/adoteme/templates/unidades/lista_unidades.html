@@ -66,13 +66,13 @@
                 <td>
                 <div class="row justify-content-between">
                     <div class="col-6 text-center">
-                        <a href="" data-href="{% url 'deletar_unidade' unidade.unidade_id %}" data-toggle="modal" data-target="#modal_deletar_unidade" data-tt="tooltip" title="Realizar exclusão da Unidade de adoção.">
-                        <i class="fa fa-trash fa-2x"></i>
+                        <a href="" data-href="#" data-tt="tooltip" title="Realizar edição da Unidade de adoção.">
+                        <i class="fa fa-edit fa-2x"></i>
                         </a>
                     </div>
                     <div class="col-6 text-center">
-                        <a href="" data-href="#" data-tt="tooltip" title="Realizar edição da Unidade de adoção.">
-                        <i class="fa fa-edit fa-2x"></i>
+                        <a href="" data-href="{% url 'deletar_unidade' unidade.unidade_id %}" data-toggle="modal" data-target="#modal_deletar_unidade" data-tt="tooltip" title="Realizar exclusão da Unidade de adoção.">
+                        <i class="fa fa-trash fa-2x" style="color:red;"></i>
                         </a>
                     </div>
                 </div>

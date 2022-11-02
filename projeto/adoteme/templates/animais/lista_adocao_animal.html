@@ -35,8 +35,8 @@
                         <td>
                         <div class="row justify-content-between">
                             <div class="col-6 text-center">
-                            <a href="#" data-href="{% url 'deletar_animal_lista' animal.animal_id %}" data-toggle="modal" data-target="#modal_deletar_animal" data-tt="tooltip" title="Remover animal da lista de adoção.">
-                                <i class="fa fa-check fa-2x"></i>
+                            <a href="#" data-href="{% url 'aprovar_adocao_animal' animal.animal_id animal.adotante.id %}" data-toggle="modal" data-target="#modal_aprovar_adocao_animal" data-tt="tooltip" title="Aprovar adoção do animal.">
+                                <i class="fa fa-check fa-2x" style="color:green;"></i>
                             </a>
                             </div>
                         </div>
@@ -56,12 +56,12 @@
                 {% endif %}
             </div>
 
-                <div id="modal_deletar_animal" class="modal fade" tabindex="-1" role="dialog">
+                <div id="modal_aprovar_adocao_animal" class="modal fade" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Tem certeza que deseja remover o animal da sua lista de adoção?</h4>
+                        <h4 class="modal-title">Tem certeza que deseja aprovar a adoção do animal?</h4>
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Cancelar</button>
@@ -75,7 +75,7 @@
 
 <script>
 
-$('#modal_deletar_animal').on('show.bs.modal', function(e) {
+$('#modal_aprovar_adocao_animal').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
 

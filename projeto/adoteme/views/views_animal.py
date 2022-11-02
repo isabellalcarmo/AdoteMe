@@ -46,7 +46,7 @@ def criar_animal(request, unidade_id):
 @permission_required('adoteme.delete_animal')
 def deletar_animal(request, animal_id):
     animal = get_object_or_404(Animal, animal_id=animal_id)
-    unidade_id = animal.unidade.unidade_id
+
     animal.delete()
     messages.add_message(request, messages.INFO, _('Animal deletado com sucesso!\n'))
 
