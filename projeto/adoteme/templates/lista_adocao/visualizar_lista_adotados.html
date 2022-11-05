@@ -30,28 +30,28 @@
                     {% for animal in animais_lista_adotados %}
                     <tr>
                         <td>
-                            {{ animal.nome_animal }}
+                            {{ animal.animal.nome_animal }}
                         </td>
                         <td>
-                            {{ animal.tipo_animal }}
+                            {{ animal.animal.tipo_animal }}
                         </td>
                         <td>
-                            {% if animal.raca_animal %}
-                                {{ animal.raca_animal }}
+                            {% if animal.animal.raca_animal %}
+                                {{ animal.animal.raca_animal }}
                             {% else %}
                                 Indefinido
                             {% endif %}
                         </td>
                         <td>
-                            {% if animal.descricao_animal %}
-                                {{ animal.descricao_animal }}
+                            {% if animal.animal.descricao_animal %}
+                                {{ animal.animal.descricao_animal }}
                             {% else %}
                                 Sem informações
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'visualizar_unidade' animal.unidade.unidade_id %}" >
-                                {{ animal.unidade.nome_unidade }} 
+                            <a href="{% url 'visualizar_unidade' animal.animal.unidade.unidade_id %}" >
+                                {{ animal.animal.unidade.nome_unidade }} 
                             </a>
                         </td>
                         <!-- <td>

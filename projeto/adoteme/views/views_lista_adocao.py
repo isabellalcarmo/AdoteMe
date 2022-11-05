@@ -74,19 +74,12 @@ def visualizar_lista_adocao(request):
 
 @login_required
 def visualizar_lista_adotados(request, unidade_id):
-    animais_lista_adotados = ListaAdocao.objects.filter(adotante_adotou=True).values('animal')
-    animais = Animal.objects.filter(unidade=unidade_id).all()
-    unidade = Unidade.objects.filter(unidade_id=unidade_id).values('nome_unidade')
-
-    animais_adotados_unidade = []
-    for animal in animais:
-        if (animais_lista_adotados[0]['animal'] == animal.animal_id):
-            animais_adotados_unidade.append(animal)
+    animais_lista_adotados = ListaAdocao.objects.filter(adotante_adotou=True, animal__unidade__unidade_id=unidade_id).all()
 
     context = {
-        'animais_lista_adotados': animais_adotados_unidade,
+        'animais_lista_adotados': animais_lista_adotados,
         'unidade_id': unidade_id,
-        'nome_unidade': unidade[0]['nome_unidade']
+        'nome_unidade': animais_lista_adotados[0].animal.unidade.nome_unidade
     }
     return render(request, 'lista_adocao/visualizar_lista_adotados.html', context=context)
 
