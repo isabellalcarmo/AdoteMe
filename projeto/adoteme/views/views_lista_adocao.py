@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
-from ..models import ListaAdocao, Animal
+from ..models import ListaAdocao, Animal, Unidade
 
 from adoteme.forms.forms_lista_adocao import ListaAdocaoForm
 
@@ -70,6 +70,18 @@ def visualizar_lista_adocao(request):
         'animais_lista_adotados': animais_lista_adotados
     }
     return render(request, 'lista_adocao/visualizar_lista_adocao.html', context=context)
+
+
+@login_required
+def visualizar_lista_adotados(request, unidade_id):
+    animais_lista_adotados = ListaAdocao.objects.filter(adotante_adotou=True, animal__unidade__unidade_id=unidade_id).all()
+
+    context = {
+        'animais_lista_adotados': animais_lista_adotados,
+        'unidade_id': unidade_id,
+        'nome_unidade': animais_lista_adotados[0].animal.unidade.nome_unidade
+    }
+    return render(request, 'lista_adocao/visualizar_lista_adotados.html', context=context)
 
 
 @login_required

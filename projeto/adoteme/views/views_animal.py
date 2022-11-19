@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ..models import Unidade, Animal
 
-from adoteme.forms.forms_animal import AnimalForm
+from adoteme.forms.forms_animal import AnimalForm, AnimalForm_edit
 
 
 @login_required
@@ -59,7 +59,7 @@ def editar_animal(request, animal_id):
     animal = get_object_or_404(Animal, animal_id=animal_id)
 
     if request.method == 'POST':
-        form = AnimalForm(request.POST, instance=animal)
+        form = AnimalForm_edit(request.POST, instance=animal)
         if form.is_valid():
             animal = form.save()
             animal.save()
@@ -67,7 +67,7 @@ def editar_animal(request, animal_id):
 
             return redirect(reverse('visualizar_unidade',args=[animal.unidade.unidade_id]))
 
-    form = AnimalForm(instance=animal)
+    form = AnimalForm_edit(instance=animal)
 
     context = {
         'form': form,
