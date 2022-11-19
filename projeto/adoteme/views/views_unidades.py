@@ -60,10 +60,11 @@ def criar_unidade(request, estado_id):
 @permission_required('adoteme.delete_unidade')
 def deletar_unidade(request, unidade_id):
     unidade = get_object_or_404(Unidade, unidade_id=unidade_id)
+    estado_id = unidade.estado.estado_id
     unidade.delete()
     messages.add_message(request, messages.INFO, _('Unidade deletada com sucesso!\n'))
 
-    return redirect(reverse('lista_unidades'))
+    return redirect(reverse('lista_unidades', args=[estado_id]))
 
 
 @login_required
