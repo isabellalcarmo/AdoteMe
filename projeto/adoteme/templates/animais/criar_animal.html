@@ -54,4 +54,11 @@
     </div>
 </div>
 
+<script>
+    $( function() {
+        $( "#id_tipo_animal" ).autocomplete({
+            source: "{% url 'criar_animal' unidade_id %}"
+        });
+    } );
+</script>
 {% endblock %}

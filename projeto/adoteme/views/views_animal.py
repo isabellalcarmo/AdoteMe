@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.http.response import JsonResponse
 
 from ..models import Unidade, Animal
 
@@ -32,6 +33,13 @@ def criar_animal(request, unidade_id):
             print(e)
             messages.add_message(request, messages.ERROR, _("Não foi possível criar o Animal"))
     else:
+        if "term" in request.GET:
+            qs = Animal.objects.filter(tipo_animal__istartswith=request.GET.get('term'))
+            tipos = []
+            for animal in qs:
+                tipos.append(animal.tipo_animal)
+            tipos = list(dict.fromkeys(tipos))
+            return JsonResponse(tipos, safe=False)
         form = AnimalForm()
 
     context = {
