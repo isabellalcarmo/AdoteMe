@@ -4,10 +4,12 @@
 Luiza Bretas (1911867) & Isabella Carmo (1911907)
 </div>
 
-## ❤️️ Sobre o AdoteMe
+## 🐶 Sobre o AdoteMe
 Nosso projeto consiste em um site para adoção de animais domésticos.
 
-## 👤 Tipos de Usuário
+É fornecida uma lista de Estados brasileiros que possuem unidades de adoção. Em cada uma dessas unidades o usuário pode visualizar suas informações, assim como verificar quais animais estão para adoção e adicioná-los à sua lista de adoção, caso desejem.
+
+## 🐱 Tipos de Usuário
 O AdoteMe possui três tipos de usuário: O cliente, o veterinário e o administrador.
 
 O cliente inicia sua navegação clicando em "Estados para adoção", disponível no painel à esquerda. Ao clicar em um dos Estados exibidos na tela, o usuário acessa a lista de unidades de adoção disponíveis no estado em questão e, similarmente, ao clicar no nome de alguma das unidades exibidas, o mesmo alcança uma página que contém mais informações sobre a unidade de adoção em questão, junto com os nomes de todos os animais da unidade que estão para adoção. Caso ele deseje adotar um dos animais, ele deverá clicar no símbolo representado por "➕" para adicionar o animal à sua lista de adoção e deverá preencher os dados com os motivos do desejo de sua adoção pelo animal escolhido. Ademais, o usuário também poderá acessar tal lista de adoção clicando em "Meus animais", disponível no painel à esquerda. Em tal página, ele poderá excluir animais da sua lista de adoção e também poderá visualizar quais que o mesmo já adotou.
@@ -18,5 +20,7 @@ O administrador é o único usuário com o poder de realizar todas as opções d
 
 No momento do cadastro, o usuário tem somente as opções de escolher entre "cliente" e "veterinário".
 
-## ❗ Funcionalidades
+## 🐰 Funcionalidades
+Usamos o framework Bootstrap, além de customizarmos alguns elementos no nosso próprio arquivo de estilos. Além disso, realizamos o uso, de JQuery, AJAX, e da biblioteca de fontes "FontAwesome". Temos operações de CRUD para os estados, unidades de adoção, listas de adoção e animais, onde nem todas essas tabelas têm todas as 4 operações.
 
+Dentre as funcionalidades do sistema, destacamos a função de completar automaticamente, caso desejável, o campo "tipo do animal" na página de adicionar o animal em uma unidade de adoção, feito usando AJAX e JQuery, que sugere ao usuário os tipos de animais baseados nos tipos já existentes no banco de dados. Além disso, fizemos a validação de alguns campos chave dos formulários através de scripts em javascript, possibilitando informar o usuário durante o preenchimento do formulário.
