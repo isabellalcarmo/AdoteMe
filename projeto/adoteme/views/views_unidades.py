@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
-from ..models import Estado, Unidade, Usuario, Animal
+from ..models import Estado, Unidade, Usuario, Animal, ListaAdocao
 
 from adoteme.forms.forms_unidade import UnidadeForm
 
@@ -94,10 +94,18 @@ def editar_unidade(request, unidade_id):
 def visualizar_unidade(request, unidade_id):
     unidade = get_object_or_404(Unidade, unidade_id=unidade_id)
     animais = Animal.objects.filter(unidade=unidade_id, adotado=False).all()
+    animais_lista_adotados = ListaAdocao.objects.filter(adotante=request.user, adotante_adotou=True, animal__unidade__unidade_id=unidade_id).all()
+
+    if animais_lista_adotados.count() == 0:
+        print('aaaa')
+        animais_lista_adotados == False
+
+    print(animais_lista_adotados)
 
     context = {
         'unidade': unidade,
         'animais': animais,
+        'animais_lista_adotados': animais_lista_adotados,
     }
 
     return render(request, "unidades/visualizar_unidade.html", context)

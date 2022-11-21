@@ -35,6 +35,7 @@
         </div>
     {% endif %}
     <br>
+    {% if animais_lista_adotados %}
     <div class="row">
         <div class="col-md-6">
             <a href="{% url 'lista_adotados' unidade.unidade_id %}" class="btn btn-primary btn-lg">
@@ -42,6 +43,7 @@
             </a>
         </div>
     </div>
+    {% endif %}
     <hr class="intro-divider">
     <div class="row">
         <div class="col-md-12">
