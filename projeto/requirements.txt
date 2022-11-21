@@ -1,15 +1,15 @@
-asgiref @ file:///tmp/build/80754af9/asgiref_1625643473416/work
+asgiref==3.4.1
 certifi==2020.12.5
 dj-database-url==1.0.0
-Django @ file:///tmp/build/80754af9/django_1625585912945/work
+Django==3.2.5
 django-heroku==0.3.1
 emoji==1.2.0
 gunicorn==20.1.0
 nltk==3.6.2
 pandas==1.2.4
-psycopg2 @ file:///C:/ci/psycopg2_1612298803839/work
-pytz @ file:///C:/Windows/TEMP/abs_90eacd4e-8eff-491e-b26e-f707eba2cbe1ujvbhqz1/croots/recipe/pytz_1654762631027/work
-sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
-typing_extensions @ file:///opt/conda/conda-bld/typing_extensions_1647553014482/work
+psycopg2==2.8.6
+pytz==2022.1
+sqlparse==0.4.1
+typing_extensions==4.1.1
 whitenoise==6.2.0
 wincertstore==0.2
