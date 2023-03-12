@@ -39,11 +39,11 @@
             
             <ul class="navbar-nav mr-auto" style="margin-left: 85%;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbar-dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="navbar-dropdown" href="#dropdown-content" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                         Olá, <strong>{% if user.first_name == '' %}{{ user.username }}{% else %}{{ user.first_name }}{% endif %}</strong>!
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-menu dropdown-menu-right" id="dropdown-content">
                         <a href="{% url 'change_password' %}" class="dropdown-item"><i class="fas fa-key"></i> Mudar Senha</a>
                         <a href="{% url 'logout' %}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         {% if user.is_staff %}
